@@ -4,7 +4,7 @@
         <div class="form-box">
             <h1 class="mb-0">Form Controllers</h1>
             <div class="form">
-                <form action="<?= base_url('/user/store');?>" method="POST">
+                <form action="<?= base_url('/user/store');?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label class="form-label">Nama Lengkap</label>
                         <?php if (session('validation') && session('validation')->hasError('nama')) : ?>
@@ -35,7 +35,12 @@
                                     <option value="<?= $item['id'] ?>"><?= $item['nama_kelas'] ?></option>
                             <?php } ?>
                         </select>
-                    </div> 
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Foto</label><br>
+                        <input type="file" name="foto">
+                    </div>
                     <input class="btn btn-dark" type="submit">
                 </form>
             </div>

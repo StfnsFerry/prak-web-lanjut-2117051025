@@ -5,19 +5,19 @@
         <div class="profile">
             <div class="box-profile">
                 <div class="img">
-                    <img src="<?=base_url('assets/img/pp.jpg');?>">
+                    <img src="<?= $user['foto'] ?? '<default-foto>'?>">
                 </div>
                 <div class="box-data">
                     <p class="title">Nama Lengkap</p>
-                    <h1 class="data"><?=$nama?></h1>
+                    <h1 class="data"><?=$user['nama']?></h1>
                 </div>
                 <div class="box-data">
                     <p class="title">Kelas</p>
-                    <h1 class="data"><?=$kelas?></h1>
+                    <h1 class="data"><?=$user['id_kelas']?></h1>
                 </div>
                 <div class="box-data">
                     <p class="title">NPM</p>
-                    <h1 class="data"><?=$npm?></h1>
+                    <h1 class="data"><?=$user['npm']?></h1>
                 </div>
             </div>
 

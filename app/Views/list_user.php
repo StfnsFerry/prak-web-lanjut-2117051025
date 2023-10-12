@@ -4,6 +4,7 @@
 <div class="container">
     <div class="list-box">
         <h1 class="mb-0">Tabel User</h3>
+        <button class="btn btn-dark mb-3"><a href="<?= base_url('/user/create')?>">+ Tambah Data</a></button>
         <div class="list-table">
             <table class="table table-hover">
               <thead>
@@ -25,7 +26,7 @@
                     <td><?= $user['npm'] ?></td>
                     <td><?= $user['nama_kelas'] ?></td>
                     <td>
-                      <a class="btn btn-primary" href="">Detail</a>
+                      <a class="btn btn-primary" href="<?= base_url('user/' . $user['id'])?>">Detail</a>
                       <a class="btn btn-warning" href="">Edit</a>
                       <a class="btn btn-danger" href="">Hapus</a>
                     </td>

@@ -35,24 +35,7 @@ class UserController extends BaseController
     }
     public function create()
     {
-        // $kelas = [
-        //     [
-        //         'id' => 1,
-        //         'nama_kelas' => 'A'
-        //     ],
-        //     [
-        //         'id' => 2,
-        //         'nama_kelas' => 'B'
-        //     ],
-        //     [
-        //         'id' => 3,
-        //         'nama_kelas' => 'C'
-        //     ],
-        //     [
-        //         'id' => 4,
-        //         'nama_kelas' => 'D'
-        //     ],
-        // ];
+        
         $kelas = $this->kelasModel->getKelas();
         $data  = [
             'title' => 'Create User',
@@ -81,20 +64,34 @@ class UserController extends BaseController
             $validation = \Config\Services::validation();
             return redirect()->to(base_url('/user/create'))->withInput()->with('validation', $validation);
         }
+        $path = 'assets/uploads/img/';
+
+        $foto = $this->request->getFile('foto');
+
+        $name = $foto->getRandomName();
+
+        if($foto->move($path, $name)){
+            $foto = base_url($path . $name);
+        }
 
         $this->userModel->saveUser([
             'nama' => $this->request->getVar('nama'),
             'id_kelas' => $this->request->getVar('kelas'),
             'npm' => $this->request->getVar('npm'),
+            'foto' => $foto
         ]);
-        // dd($this->request->getVar());
-        // $data = [
-        //     'title' => 'Profile',
-        //     'nama' => $this->request->getVar('nama'),
-        //     'kelas' => $this->request->getVar('kelas'),
-        //     'npm' => $this->request->getVar('npm'),
-        // ];
-        // return view('profile', $data);
+       
         return redirect()->to(base_url('/user'));
+    }
+
+    public function show($id){
+        $user = $this->userModel->getUser($id);
+
+        $data = [
+            'title' => 'Profile',
+            'user' => $user,
+        ];
+
+        return view('profile', $data);
     }
 }
