@@ -56,7 +56,7 @@
                                 <input type="file" name="foto">
                             </div>
                             <div class="submit-wrap d-flex justify-content-end align-items-center">
-                                <input class="btn btn-dark" type="submit">
+                                <input class="btn btn-dark save" type="submit">
                             </div>
                         </form>
                     </div>

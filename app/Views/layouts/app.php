@@ -18,7 +18,7 @@
         <header class="header">
             <ul class="navlist mb-0 ps-0">
                 <li><a href="<?= base_url('/user')?>">USERS</a></li>
-                <li><a href="<?= base_url('/listkelas')?>">KELAS</a></li>
+                <li><a href="<?= base_url('/kelas')?>">KELAS</a></li>
             </ul>
         </header>
 
