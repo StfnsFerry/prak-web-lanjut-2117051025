@@ -4,7 +4,7 @@
         <div class="row border rounded-5 p-3 bg-white shadow box-area">
             <div class="col-md-6 rounded-4 left-box d-flex justify-content-center align-items-center">
                 <div class="featured-image">
-                    <img src="<?= base_url('assets/img/user.svg')?>" class="img-fluid" style="width:350px;">
+                    <img src="<?= base_url('assets/img/edit-user.svg')?>" class="img-fluid" style="width:350px;">
                 </div>
             </div>
             <div class="col-md-6">
