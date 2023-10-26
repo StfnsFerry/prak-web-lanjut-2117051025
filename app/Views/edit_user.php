@@ -9,24 +9,25 @@
             </div>
             <div class="col-md-6">
                 <div class="form-wrap">
-                    <div class="form-header d-flex align-items-center justify-content-between mb-3">
+                <div class="form-header d-flex align-items-center justify-content-between mb-3">
                         <div class="title">
-                            <h4 class="mb-1">Create User</h4>
-                            <p class="mb-0">Fill in the blanks below</p>
+                            <h4 class="mb-1">Edit User</h4>
+                            <p class="mb-0">Update data</p>
                         </div>
                         <div class="back">
                             <a href="<?= base_url('/user')?>" class="btn btn-outline-dark"><i class="fas fa-arrow-left mb-0"></i></a>
                         </div>
                     </div>
                     <div class="form">
-                        <form action="<?= base_url('/user/store');?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?= base_url('/user/' . $user['id'])?>" method="POST" enctype="multipart/form-data">
+                            <?= csrf_field() ?>
                             <div class="form-floating mb-3">
                                 <?php if (session('validation') && session('validation')->hasError('nama')) : ?>
                                     <div class="invalid-feedback">
                                         <?= session('validation')->getError('nama'); ?>
                                     </div>
                                 <?php endif; ?>
-                                <input type="text" id="floatingInput" class="form-control <?= session('validation') && session('validation')->hasError('nama') ? 'is-invalid' : '' ?>"  placeholder="Nama Lengkap" name="nama" value="<?= old('nama') ?>">
+                                <input type="text" id="floatingInput" class="form-control <?= session('validation') && session('validation')->hasError('nama') ? 'is-invalid' : '' ?>"  placeholder="Nama Lengkap" name="nama" value="<?= $user['nama'] ?>">
                                 <label for="floatingInput">Nama Lengkap</label>
                             </div>
                             
@@ -36,7 +37,7 @@
                                         <?= session('validation')->getError('npm'); ?>
                                     </div>
                                 <?php endif; ?>
-                                <input type="text" id="floatingInput" class="form-control <?= session('validation') ? 'is-invalid' : '' ?>" placeholder="NPM" name="npm" value="<?= old('npm') ?>">
+                                <input type="text" id="floatingInput" class="form-control <?= session('validation') ? 'is-invalid' : '' ?>" placeholder="NPM" name="npm" value="<?= $user['npm'] ?>">
                                 <label for="floatingInput">NPM</label>
                             </div> 
                             
@@ -46,17 +47,19 @@
                                         <?php
                                         foreach ($kelas as $item) {
                                         ?>
-                                            <option value="<?= $item['id'] ?>"><?= $item['nama_kelas'] ?></option>
+                                            <option value="<?= $item['id'] ?>"<?=$user['id_kelas']== $item['id'] ? 'selected' : '' ?> ><?= $item['nama_kelas'] ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="floatingSelect">Kelas</label>
                             </div>
                                             
                             <div class="mb-3">
+                            <img src="<?= $user['foto'] ?? '<default-foto>'?>" class="mb-3" style="width : 100px; padding : 10px 10px;"><br>
                                 <input type="file" name="foto">
                             </div>
                             <div class="submit-wrap d-flex justify-content-end align-items-center">
-                                <input class="btn btn-dark" type="submit">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input class="btn btn-dark save" type="submit" value="Save Edit">
                             </div>
                         </form>
                     </div>
